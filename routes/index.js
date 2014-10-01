@@ -6,7 +6,7 @@ router.get('/', function(req, res) {
   var db = req.db;
   var posts = db.get('posts');
   posts.find({}, function(e, docs){
-    res.render('index', { title: 'Express', 'posts': docs });
+    res.render('index', { title: 'Twitter Clone', 'posts': docs });
   });
 });
 
