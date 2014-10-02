@@ -1,35 +1,48 @@
 body {
   padding: 50px;
+  background-color: #eee;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 a {
   color: #00b7ff;
 }
+h1 {
+  text-align: center;
+  margin-top: 160px;
+}
+h3 {
+  text-align: center;
+  margin-top: 160px;
+}
 #login-container {
-  width: 340px;
-  margin: 160px auto;
+  width: 170px;
+  margin: 30px auto;
 }
 #login-container label {
   margin: 15px 0 5px 5px;
 }
+#login-container h5 {
+  text-align: center;
+}
 #login-container button {
-  width: 150px;
+  width: 165px;
   padding: 6px 40px 6px 40px;
-  float: left;
   margin-top: 15px;
 }
-#login-container .checkbox {
-  margin: 23px 0 0 180px;
-}
-#login-container .btm-links {
-  text-align: center;
-  margin-top: 10px;
-}
 #login-container #create-account {
-  float: right;
-  margin-right: 13px;
+  margin-top: 10px;
+  text-align: center;
 }
-#login-container #forgot-password {
-  float: left;
-  margin-left: 10px;
+#signup-container {
+  width: 170px;
+  margin: 30px auto;
+}
+#signup-container label {
+  margin: 15px 0 5px 5px;
+}
+#signup-container button {
+  width: 165px;
+  padding: 6px 40px 6px 40px;
+  float: right;
+  margin-top: 15px;
 }

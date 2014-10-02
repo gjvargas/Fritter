@@ -1,0 +1,10 @@
+extends layout
+
+block content
+
+a(href="new") Make a post
+
+ul
+  each val in posts.length ? posts : [{title: "No posts.", post: "Sorry, there are no active posts :("}]
+    li= val.title
+    li= val.post

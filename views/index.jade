@@ -4,13 +4,19 @@ block content
 
 
   h1= title
-  p Welcome to #{title}
 
   #login-container
-    form( method="post")#login-form.well.span4
-      h1 Hello!
-      p.subheading Please Login To Your Account
+    form(name="login" action="/login" method="post")
+      h5 Please Login To Your Account
       label Username
-      input(type="text", name="user", id='user-tf').span4.required
+      br
+      input(type="text", name="user")
+      br
       label Password
-      input(type="password", name="pass", id='pass-tf').span4.required
+      br
+      input(type="password", name="pass")
+      br
+      button Login
+      br
+      #create-account
+        a(href="signup") create account

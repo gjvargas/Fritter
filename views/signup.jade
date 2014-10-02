@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h3= title
+  #signup-container
+    form(name="post", action="/post", method="post")
+        label User Name:
+        br
+        input(type="text", name="user")
+        br
+        label Password:
+        br
+        input(type="password", name="pass")
+        br
+        label Confirm Password:
+        br
+        input(type="password", name="pass2")
+        br
+        button Submit
