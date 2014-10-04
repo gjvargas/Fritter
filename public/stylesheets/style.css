@@ -17,21 +17,21 @@ h3 {
 #login-container {
   width: 170px;
   margin: 30px auto;
+  text-align: center;
 }
 #login-container label {
   margin: 15px 0 5px 5px;
 }
-#login-container h5 {
+#login-container label h5 {
   text-align: center;
 }
 #login-container button {
-  width: 165px;
+  width: 177px;
   padding: 6px 40px 6px 40px;
   margin-top: 15px;
 }
 #login-container #create-account {
   margin-top: 10px;
-  text-align: center;
 }
 #signup-container {
   width: 170px;
@@ -45,4 +45,81 @@ h3 {
   padding: 6px 40px 6px 40px;
   float: right;
   margin-top: 15px;
+}
+#ptitle {
+  margin: 20px 160px 20px 160px;
+}
+#ptitle p {
+  font-size: 175%;
+  font-weight: bold;
+  height: 30px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #aaa;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: left;
+}
+#ppost {
+  margin: 20px 160px 0 160px;
+}
+#ppost p {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #aaa;
+  font-size: 125%;
+  height: 200px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: left;
+}
+#pname {
+  margin: 20px 160px 20px 160px;
+  text-align: left;
+}
+#pname p {
+  height: 20px;
+}
+#title-input {
+  margin: 20px 0 20px 0;
+}
+#title-input input {
+  font-size: 175%;
+  font-weight: bold;
+  height: 30px;
+  width: 100%;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+#post-input {
+  margin: 20px 0 20px 0;
+}
+#post-input textarea {
+  padding-left: 0;
+  padding-top: 0;
+  padding-bottom: 0.4em;
+  padding-right: 0.4em;
+  font-size: 125%;
+  height: 200px;
+  width: 100%;
+}
+#post-form {
+  margin: 20px 170px 20px 200px;
+}
+div {
+  margin: 20px 170px 20px 160px;
+  text-align: right;
+}
+#inner-post-form {
+  margin: 20px 170px 20px 160px;
+}
+#large-header h1 {
+  margin-top: 0;
+  font-size: 250%;
 }

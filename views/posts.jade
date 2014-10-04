@@ -2,9 +2,37 @@ extends layout
 
 block content
 
-a(href="new") Make a post
+  #large-header
+    h1= title
+  ul
+  #post-form
+    form(name="post", action="/post", method="post")
+      #title-input
+        input(type="text", name="title", placeholder="Submit a New Post!")
+      #post-input
+        textarea(type="text", name="post", placeholder="Awesome content here!", rows = 20, cols = 80)
+      input(type="submit", value="Submit")
 
-ul
-  each val in posts.length ? posts : [{title: "No posts.", post: "Sorry, there are no active posts :("}]
-    li= val.title
-    li= val.post
+
+  ul
+    each val in posts.length ? posts : [{title: "No posts.", post: "Sorry, there are no active posts :("}]
+      if val.user != cookies.user
+        #ptitle
+          p= val.title
+        #ppost
+          p= val.post
+        div= "posted by " + val.user
+
+
+      else
+        #pname
+          p= "You can still edit your post!"
+        #inner-post-form
+          form(name="post", action="/post", method="post")
+            #title-input
+              input(type="text", name="title", value=val.title)
+            #post-input
+              textarea(type="text", name="post", rows = 20, cols = 80)= val.post
+            input(type="submit", value="Submit")
+        div
+          button Delete

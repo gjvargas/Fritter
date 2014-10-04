@@ -1,6 +1,6 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'node', '/usr/local/bin/npm', 'start' ]
-2 info using npm@1.4.25
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'start' ]
+2 info using npm@1.4.28
 3 info using node@v0.10.32
 4 verbose node symlink /usr/bin/node
 5 verbose run-script [ 'prestart', 'start', 'poststart' ]
@@ -19,9 +19,9 @@
 11 error     npm owner ls project2
 11 error There is likely additional logging output above.
 12 error System Linux 3.13.0-36-generic
-13 error command "node" "/usr/local/bin/npm" "start"
-14 error cwd /home/gjvargas/Documents/6.170/project2
+13 error command "/usr/bin/node" "/usr/bin/npm" "start"
+14 error cwd /home/guva/Documents/6.170/project2
 15 error node -v v0.10.32
-16 error npm -v 1.4.25
+16 error npm -v 1.4.28
 17 error code ELIFECYCLE
 18 verbose exit [ 1, true ]
