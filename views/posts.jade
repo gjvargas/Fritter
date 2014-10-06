@@ -12,9 +12,9 @@ block content
     #post-form
       form(name="post", action="/post", method="post")
         #title-input
-          input(type="text", name="title", placeholder="Submit a New Post!")
+          input(type="text", name="title", placeholder="Submit a New Post!", maxlength="34")
         #post-input
-          textarea(type="text", name="post", placeholder="Awesome content here!", rows = 20, cols = 80)
+          textarea(type="text", name="post", placeholder="Awesome content here!", rows = 20, cols = 80, maxlength="470")
         input(type="submit", value="Submit")
 
 
@@ -36,9 +36,9 @@ block content
         #inner-post-form
           form(name="post", action="/edit", method="post")
             #title-input
-              input(type="text", name="title", value=val.title)
+              input(type="text", name="title", value=val.title, maxlength="34")
             #post-input
-              textarea(type="text", name="post", rows = 20, cols = 80)= val.post
+              textarea(type="text", name="post", rows = 20, cols = 80, maxlength="470")= val.post
             input(type="hidden", name="orig_title", value=val.title)
             input(type="hidden", name="orig_post", value=val.post)
             input(name="submit",type="submit", value="Submit")
