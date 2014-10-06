@@ -3,15 +3,19 @@ extends layout
 block content
 
   #large-header
-    h1= title
-  ul
-  #post-form
-    form(name="post", action="/post", method="post")
-      #title-input
-        input(type="text", name="title", placeholder="Submit a New Post!")
-      #post-input
-        textarea(type="text", name="post", placeholder="Awesome content here!", rows = 20, cols = 80)
-      input(type="submit", value="Submit")
+    if user != null
+      h1= title
+    else
+      h1 Welcome to Fritter!
+  if user != null
+    ul
+    #post-form
+      form(name="post", action="/post", method="post")
+        #title-input
+          input(type="text", name="title", placeholder="Submit a New Post!")
+        #post-input
+          textarea(type="text", name="post", placeholder="Awesome content here!", rows = 20, cols = 80)
+        input(type="submit", value="Submit")
 
 
   ul
@@ -43,4 +47,7 @@ block content
             input(type="hidden", name="post", value=val.post)
             input(name="delete",type="submit", value="Delete")
   #signout
-    a(href="signout") Sign Out
+    if user == null
+      a(href="signout") Log in or Sign up!
+    else
+      a(href="signout") Sign Out

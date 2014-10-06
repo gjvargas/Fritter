@@ -3,22 +3,26 @@ extends layout
 block content
 
 
-  h1= title
 
   #login-container
+    h1= title
+
     form(name="login" action="/login" method="post")
-      h5 Please Login To Your Account
-      #prompt
-        label Username
-        br
-        input(type="text", name="user")
-        br
-        label Password
-        br
-        input(type="password", name="pass")
-        br
+
+      h4
+        small Login To Your Account
+      label Username
+      br
+      input(type="text", name="user")
+      br
+      label Password
+      br
+      input(type="password", name="pass")
+      br
       button Login
       br
       #create-account
-        div
-          a(href="signup") Create new account here
+        a(href="signup") Create new account here!
+        h5= message
+  #anon
+    a(href="posts") Browse Anonymously

@@ -6,7 +6,8 @@ var cookieSession = require('cookie-session');
 /* GET home page. */
 router.get('/', function(req, res) {
   req.session.user = null;
-  res.render('index', {title: 'Fritter'});
+  res.render('index', {title: 'Fritter', message: req.session.login});
+  req.session.login = null;
 });
 
 router.get('/new', function(req, res) {
@@ -22,11 +23,14 @@ router.post('/login', function (req, res, next) {
   var users = db.get('users');
   users.find({user: req.body.user}, {password: 1}, function(err, docs){
     if(err) {
-      res.send("There was a problem");
+      req.session.login = "Please keep trying.";
+      res.redirect('/');
     } else if(docs.length == 0) {
-      res.send("Username doesn't exist.");
+      req.session.login = "Username doesn't exist.";
+      res.redirect('/');
     } else if(req.body.pass != docs[0].password) {
-      res.send("Incorrect password.");
+      req.session.login = "Password is incorrect.";
+      res.redirect('/');
     } else {
       req.session.user = req.body.user;
       res.redirect("/posts");
@@ -65,6 +69,7 @@ router.post('/create', function(req, res, next) {
 });
 
 router.get('/posts', function(req, res) {
+  req.session.login = null;
   var db = req.db;
   var posts = db.get('posts');
   posts.find({}, function(e, docs){

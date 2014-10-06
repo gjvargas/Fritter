@@ -1,44 +1,57 @@
 body {
   padding: 50px;
+  background-image: url("background.jpg");
   background-color: #eee;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 a {
   color: #00b7ff;
+  margin-left: auto;
+  margin-right: auto;
 }
 h1 {
+  color: #ddd;
   text-align: center;
   margin-top: 160px;
+  margin-bottom: 5px;
 }
 h3 {
+  color: #ddd;
   text-align: center;
   margin-top: 160px;
 }
 #login-container {
+  color: #ddd;
   width: 170px;
-  margin: 30px auto;
+  margin-left: auto;
+  margin-right: auto;
 }
-#login-container label {
-  text-align: left;
+#login-container input {
+  background-color: #ddd;
 }
-#login-container margin 15px 0 5px 5px h5 {
+#login-container h4 {
+  margin-left: 0px;
   text-align: center;
 }
-#login-container button {
-  width: 177px;
-  padding: 6px 40px 6px 40px;
+#login-container h5 {
+  text-align: center;
+  color: #f00;
+}
+button {
+  width: 175px;
+  padding: 6px 70px 6px 70px;
   margin-top: 15px;
 }
-#login-container button #prompt {
-  text-align: left;
-}
-#login-container button #prompt div {
-  margin: 10px 0 10px 10px;
-}
-#login-container button #create-account a {
+#create-account {
+  margin: 5px 1px;
   text-align: center;
 }
+label {
+  text-align: left;
+  margin: 20px 5px;
+}
 #signup-container {
+  color: #ddd;
   width: 170px;
   margin: 30px auto;
 }
@@ -55,12 +68,14 @@ h3 {
   margin: 20px 160px 20px 160px;
 }
 #ptitle p {
+  color: #002344;
   font-size: 175%;
   font-weight: bold;
   height: 30px;
+  background: #ddd;
   border-style: solid;
-  border-width: 1px;
-  border-color: #aaa;
+  border-width: 5px;
+  border-color: #056f83;
   padding-left: 5px;
   padding-right: 5px;
   padding-top: 5px;
@@ -71,9 +86,11 @@ h3 {
   margin: 20px 160px 0 160px;
 }
 #ppost p {
+  background: #ddd;
+  color: #002344;
   border-style: solid;
-  border-width: 1px;
-  border-color: #aaa;
+  border-width: 5px;
+  border-color: #056f83;
   font-size: 125%;
   height: 200px;
   padding-left: 5px;
@@ -83,12 +100,14 @@ h3 {
   text-align: left;
 }
 #pedit {
+  color: #fff;
   margin: 20px 160px 20px 160px;
   text-align: left;
 }
 #pname {
   margin: 20px 160px 20px 160px;
   text-align: right;
+  color: #aaa;
 }
 #pname p {
   height: 20px;
@@ -97,6 +116,7 @@ h3 {
   margin: 20px 0 20px 0;
 }
 #title-input input {
+  background-color: #fff;
   font-size: 175%;
   font-weight: bold;
   height: 30px;
@@ -110,6 +130,7 @@ h3 {
   margin: 20px 0 20px 0;
 }
 #post-input textarea {
+  background-color: #fff;
   padding-left: 0;
   padding-top: 0;
   padding-bottom: 0.4em;
@@ -130,4 +151,14 @@ h3 {
 }
 #signout {
   text-align: center;
+}
+#anon {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+#return {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
 }
