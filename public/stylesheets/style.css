@@ -28,6 +28,7 @@ h3 {
 }
 #login-container input {
   background-color: #ddd;
+  margin: 5px 0;
 }
 #login-container h4 {
   margin-left: 0px;
@@ -37,10 +38,10 @@ h3 {
   text-align: center;
   color: #f00;
 }
-button {
-  width: 175px;
-  padding: 6px 70px 6px 70px;
-  margin-top: 15px;
+#login-container button {
+  width: 100px;
+  height: 25px;
+  margin: 10px 0;
 }
 #create-account {
   margin: 5px 1px;
@@ -53,16 +54,17 @@ label {
 #signup-container {
   color: #ddd;
   width: 170px;
-  margin: 30px auto;
+  margin-left: auto;
+  margin-right: auto;
 }
-#signup-container label {
-  margin: 15px 0 5px 5px;
+#signup-container input {
+  background-color: #ddd;
+  margin: 5px 0;
 }
 #signup-container button {
-  width: 165px;
-  padding: 6px 40px 6px 40px;
-  float: right;
-  margin-top: 15px;
+  width: 100px;
+  height: 25px;
+  margin: 10px 0;
 }
 #ptitle {
   margin: 20px 160px 20px 160px;

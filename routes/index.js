@@ -73,7 +73,7 @@ router.get('/posts', function(req, res) {
   var db = req.db;
   var posts = db.get('posts');
   posts.find({}, function(e, docs){
-    res.render('posts', {title: "Welcome to Fritter, " + req.session.user + "!", 'posts': docs, 'user': req.session.user});
+    res.render('posts', {title: "Fritter", 'posts': docs, 'user': req.session.user});
   });
 });
 
