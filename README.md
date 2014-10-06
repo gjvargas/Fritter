@@ -70,3 +70,7 @@ https://github.com/6170-fa14/gjvargas_proj2/blob/master/routes/index.js#L116-122
 Used session variables throughout code to track who/if someone is logged in, and
 what errors I might need to display to them during login and sign up.
 https://github.com/6170-fa14/gjvargas_proj2/blob/master/routes/index.js#L8-10
+
+
+Also here's the link to the live app hosted on Openshift:
+http://fritter-guva.rhcloud.com/
