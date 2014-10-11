@@ -118,3 +118,6 @@ so that only posts that match they're search are shown.
 Functionally, everything else is the same. All I really did was update the data model
 to support these two additional features. That being said, my new github links follow,
 but there aren't many more technical additions to be shown off.
+
+This is still the link:
+http://fritter-guva.rhcloud.com/
