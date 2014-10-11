@@ -7,7 +7,7 @@ block content
       h1= title
     else
       h1 Welcome to Fritter!
-  if user != null
+  if user != null && state == "posts"
     ul
     #post-form
       form(name="post", action="/post", method="post")
@@ -19,16 +19,26 @@ block content
 
 
   ul
-    each val in posts.length ? posts : [{title: "No posts.", post: "Sorry, there are no active posts :(", user: "a"}]
+    each val in posts.length ? posts : [{title: "No posts.", post: "Sorry, there's no content to show you. :(", user: "a"}]
       if val.user != user
         #ptitle
           p= val.title
         #ppost
           p= val.post
         if(val.user.length > 3)
-          #pname
-            div= "posted by " + val.user
-
+          if user != null
+            #pname
+              if state == "posts" || state == "postsearch"
+                #follow
+                  form(name="post", action="/follow", method="post")
+                    input(type="hidden", name="followee", value=val.user)
+                    input(name="follow",type="submit", value="Follow")
+              if state == "feed" || state == "feedsearch"
+                #follow
+                  form(name="post", action="/unfollow", method="post")
+                    input(type="hidden", name="followee", value=val.user)
+                    input(name="unfollow",type="submit", value="Unfollow")
+              span= "posted by " + val.user
 
       else
         #pedit
@@ -51,3 +61,27 @@ block content
       a(href="signout") Log in or Sign up!
     else
       a(href="signout") Sign Out
+
+  #anon
+    if state == "feed" || state == "feedsearch"
+      a(href="posts") Go to General Posts
+    if state == "posts" || state == "postsearch"
+      a(href="feed") Go to Feed
+  if user != null
+    #search
+      p Search our Content!
+      if state == "posts" || state == "postsearch"
+        form(name="search", action="/postsearch", method="post")
+          input(type="text", name="query", maxlength="20")
+          input(name="submitSearch", type="submit", value="Search!")
+      if state == "feed" || state == "feedsearch"
+        form(name="search", action="/feedsearch", method="post")
+          input(type="text", name="query", maxlength="20")
+          input(name="submitSearch", type="submit", value="Search!")
+
+    #unsearch
+      if state == "postsearch"
+        a(href="posts") Return to all Posts
+    #unsearch
+      if state == "feedsearch"
+        a(href="feed") Return to full Feed

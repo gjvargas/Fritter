@@ -70,7 +70,7 @@ router.post('/create', function(req, res, next) {
     }
     //It worked! Add new user to database
     else {
-      users.insert({"user": req.body.user, "password": req.body.pass}, function(e, docs){
+      users.insert({"user": req.body.user, "password": req.body.pass, "followees": []}, function(e, docs){
       if(e) {
         res.send("There was a problem");
         } else {
@@ -80,8 +80,6 @@ router.post('/create', function(req, res, next) {
       });
     }
   });
-
-
 });
 
 //renders posts page for user
@@ -92,11 +90,98 @@ router.get('/posts', function(req, res) {
   var db = req.db;
   //search database for posts
   var posts = db.get('posts');
-  posts.find({}, function(e, docs){
-    res.render('posts', {title: "Fritter", 'posts': docs.reverse(), 'user': req.session.user});
+  var users = db.get('users');
+  if(req.session.user != null) {
+    users.findOne({user: req.session.user}, {followees: 1}, function(e, docs) {
+      if(e) {
+        res.send("There was a problem");
+      } else {
+        posts.find({user: {$nin: docs.followees}}, function(err, content){
+          if(err){
+            res.send("There was a problem");
+          } else {
+            res.render('posts', {title: "Fritter", 'posts': content.reverse(), 'user': req.session.user, 'state': "posts"});
+          }
+        });
+      }
+    });
+  } else {
+    posts.find({}, function(err, content){
+      if(err){
+        res.send("There was a problem");
+      } else {
+        res.render('posts', {title: "Fritter", 'posts': content.reverse(), 'user': req.session.user});
+      }
+    });
+  }
+});
+
+//renders posts page for user
+router.get('/feed', function(req, res) {
+  //login is the login message, so if the user makes it here,
+  //there is no longer a log in error message saved
+  req.session.login = null;
+  var db = req.db;
+  //search database for posts
+  var posts = db.get('posts');
+  var users = db.get('users');
+
+  users.findOne({user: req.session.user}, {followees: 1}, function(e, docs) {
+    if(e) {
+      res.send("There was a problem");
+    } else {
+      posts.find({user: {$in: docs.followees}}, function(err, content){
+        if(err){
+          res.send("There was a problem");
+        } else {
+          res.render('posts', {title: "Fritter", 'posts': content.reverse(), 'user': req.session.user, 'state': "feed"});
+        }
+      });
+    }
   });
 });
 
+router.post('/postsearch', function(req, res) {
+  req.session.login = null;
+  var db = req.db;
+  var posts = db.get('posts');
+  var users = db.get('users');
+  req.session.filter = 'search';
+  users.findOne({user: req.session.user}, {followees: 1}, function(e, content){
+    if(e) {
+      res.send("There was a problem");
+    } else {
+      posts.find({user: {$nin: content.followees}, 'words': {$all: req.body.query.match(/\w+/g)}}, function(err, docs) {
+        if(err) {
+          res.send("There was a problem");
+        } else {
+          res.render('posts', {title: "Fritter", 'posts': docs.reverse(), 'user': req.session.user, 'state': "postsearch"});
+        }
+      });
+    }
+  });
+});
+
+router.post('/feedsearch', function(req, res) {
+  req.session.login = null;
+  req.session.filter = 'search';
+  var db = req.db;
+  var posts = db.get('posts');
+  var users = db.get('users');
+  users.findOne({user: req.session.user}, {followees: 1}, function(e, content){
+    if(e) {
+      res.send("There was a problem");
+    } else {
+      posts.find({user: {$in: content.followees}, 'words': {$all: req.body.query.match(/\w+/g)}}, function(err, docs) {
+        if(err) {
+          res.send("There was a problem");
+        } else {
+          res.render('posts', {title: "Fritter", 'posts': docs.reverse(), 'user': req.session.user, 'state': "feedsearch"});
+        }
+      });
+    }
+  });
+});
 //creates a new post
 router.post('/post', function(req, res, next) {
 	var db = req.db;
@@ -113,7 +198,7 @@ router.post('/post', function(req, res, next) {
   }
   if(title.length > 0 || post.length > 0) {
     //Success! adding post to database
-  	posts.insert({"title": title, "post": post, "user": req.session.user}, function(err, docs){
+  	posts.insert({"title": title, "post": post, "user": req.session.user, "words": (title+" "+post).match(/\w+/g)}, function(err, docs){
   	if(err) {
   		res.send("There was a problem");
   		} else {
@@ -145,7 +230,7 @@ router.post('/edit', function(req, res, next) {
       res.send("There was a problem");
       }
     });
-    posts.insert({"title": req.body.title, "post": req.body.post, "user": req.session.user}, function(err, docs){
+    posts.insert({"title": req.body.title, "post": req.body.post, "user": req.session.user, "words": (title+" "+post).match(/\w+/g)}, function(err, docs){
     if(err) {
       res.send("There was a problem");
       } else {
@@ -168,6 +253,32 @@ router.post('/delete', function(req, res, next) {
     } else {
       res.redirect("/posts");
     }
+  });
+});
+
+router.post('/follow', function(req, res, next) {
+  var db = req.db;
+  var users = db.get('users');
+  //finds username in database
+  users.update({user: req.session.user}, {$addToSet: {followees: req.body.followee}}, function(err, docs) {
+    if(err) {
+      res.send("There was a problem");
+      } else {
+        res.redirect("/posts");
+      }
+  });
+});
+
+router.post('/unfollow', function(req, res, next) {
+  var db = req.db;
+  var users = db.get('users');
+  //finds username in database
+  users.update({user: req.session.user}, {$pull: {followees: req.body.followee}}, function(err, docs) {
+    if(err) {
+      res.send("There was a problem");
+      } else {
+        res.redirect("/feed");
+      }
   });
 });
 
