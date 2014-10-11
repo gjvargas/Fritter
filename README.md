@@ -119,5 +119,19 @@ Functionally, everything else is the same. All I really did was update the data 
 to support these two additional features. That being said, my new github links follow,
 but there aren't many more technical additions to be shown off.
 
+Here are examples of how I filter by followees
+https://github.com/6170-fa14/gjvargas_proj2/blob/master/routes/index.js#L95-107
+https://github.com/6170-fa14/gjvargas_proj2/blob/master/routes/index.js#L129-141
+
+Here is how I filter by words for search using regex:
+https://github.com/6170-fa14/gjvargas_proj2/blob/master/routes/index.js#L150-162
+https://github.com/6170-fa14/gjvargas_proj2/blob/master/routes/index.js#L171-183
+
+Here is how I update followees:
+https://github.com/6170-fa14/gjvargas_proj2/blob/master/routes/index.js#L259-283
+
+New way to add posts so that I can search later:
+https://github.com/6170-fa14/gjvargas_proj2/blob/master/routes/index.js#L201
+
 This is still the link:
 http://fritter-guva.rhcloud.com/
