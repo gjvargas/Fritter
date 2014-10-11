@@ -74,3 +74,47 @@ https://github.com/6170-fa14/gjvargas_proj2/blob/master/routes/index.js#L8-10
 
 Also here's the link to the live app hosted on Openshift:
 http://fritter-guva.rhcloud.com/
+
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+Final submission
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+So I didn't change much in terms of the aesthetics of the app.
+
+I did however implement search and followers for users who are logged in.
+I chose to do it only for logged in users to encourage people to sign up,
+and to discourage lurking.
+
+The relevant part of the assignment though, is the data model.
+
+Before the data model looked like this:
+
+User -> Username, Password
+Post -> Title, Content, User who posted
+
+This was effective for the simple tasks I had to implement.
+This entailed being able to check who is logged in, list
+the posts, and compare who posted the content to the current user.
+Simple tasks meant a simple data model. This data model was not
+rich enough however to implement followers and search, so I had to make
+a few changes. This is what it looks like now:
+
+User -> Username, Password, Followees
+Post -> Title, Content, User who posted, Words in post
+
+The additional Followees field in user allowed me to split the user experience
+into 2 parts: browsing fresh content of users they're not following, and browsing
+content posted by the people they are following. This way, users can just read through
+the posts of the followers as usual, but they can also look through new posts and
+find new people to follow. I accomplish this by filtering all content by comparing
+followees to user who posted.
+
+The additional array of words in post allowed me to implement search. Using a little
+bit of regex, I parse all posts when they're added/edited and save the words in an
+array. Then when a user searches the content they are browsing, I filter the content
+so that only posts that match they're search are shown.
+
+Functionally, everything else is the same. All I really did was update the data model
+to support these two additional features. That being said, my new github links follow,
+but there aren't many more technical additions to be shown off.
